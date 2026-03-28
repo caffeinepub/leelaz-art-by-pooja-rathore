@@ -1,0 +1,159 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --radius: 0.25rem;
+
+    /* Gallery-white minimalist palette */
+    --background: 1 0 0;
+    --foreground: 0.145 0 0;
+    --card: 0.97 0 0;
+    --card-foreground: 0.145 0 0;
+    --popover: 1 0 0;
+    --popover-foreground: 0.145 0 0;
+    /* primary = near-black for buttons/text */
+    --primary: 0.22 0 0;
+    --primary-foreground: 0.985 0 0;
+    /* secondary = light gray surface */
+    --secondary: 0.95 0 0;
+    --secondary-foreground: 0.22 0 0;
+    --muted: 0.95 0 0;
+    --muted-foreground: 0.5 0 0;
+    --accent: 0.93 0 0;
+    --accent-foreground: 0.22 0 0;
+    --destructive: 0.577 0.245 27.325;
+    --destructive-foreground: 0.985 0 0;
+    --border: 0.91 0 0;
+    --input: 0.91 0 0;
+    --ring: 0.708 0 0;
+    /* chart colors */
+    --chart-1: 0.646 0.222 41.116;
+    --chart-2: 0.6 0.118 184.704;
+    --chart-3: 0.398 0.07 227.392;
+    --chart-4: 0.828 0.189 84.429;
+    --chart-5: 0.769 0.188 70.08;
+    /* sidebar */
+    --sidebar: 0.985 0 0;
+    --sidebar-foreground: 0.145 0 0;
+    --sidebar-primary: 0.22 0 0;
+    --sidebar-primary-foreground: 0.985 0 0;
+    --sidebar-accent: 0.97 0 0;
+    --sidebar-accent-foreground: 0.22 0 0;
+    --sidebar-border: 0.91 0 0;
+    --sidebar-ring: 0.708 0 0;
+    /* custom */
+    --footer-bg: 0.22 0 0;
+    --hero-bg-start: 0.28 0 0;
+    --hero-bg-end: 0.4 0 0;
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Inter", system-ui, sans-serif;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: "Playfair Display", Georgia, serif;
+  }
+}
+
+/* Masonry grid */
+.masonry-grid {
+  column-count: 1;
+  column-gap: 1.5rem;
+}
+@media (min-width: 640px) {
+  .masonry-grid {
+    column-count: 2;
+  }
+}
+@media (min-width: 1024px) {
+  .masonry-grid {
+    column-count: 3;
+  }
+}
+.masonry-item {
+  break-inside: avoid;
+  margin-bottom: 1.5rem;
+}
+
+/* Nav link active underline */
+.nav-link {
+  position: relative;
+  letter-spacing: 0.08em;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: currentColor;
+  transition: width 0.25s ease;
+}
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* Gallery card hover */
+.gallery-card {
+  overflow: hidden;
+  background: oklch(var(--card));
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+.gallery-card:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.13);
+  transform: translateY(-3px);
+}
+.gallery-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.4s ease;
+}
+.gallery-card:hover img {
+  transform: scale(1.03);
+}
+
+/* Timeline */
+.timeline-line {
+  position: relative;
+}
+.timeline-line::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: oklch(var(--border));
+}
+@media (max-width: 767px) {
+  .timeline-line::before {
+    top: 0;
+    bottom: 0;
+    left: 12px;
+    right: auto;
+    width: 1px;
+    height: auto;
+  }
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
